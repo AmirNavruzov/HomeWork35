@@ -30,8 +30,17 @@ create table 'bosses-employees'(
 id_bosses-employees int not null auto_increment primary key,
 id_employee int not null,
 id_boss int not null,
-time_start int not null,
+time_start DATE not null,
 time_end int not null,
 foreign key (id_employee) references employees(id_employee),
 foreign key (id_boss) references employees(id_boss)
+);
+
+CREATE TABLE salary(
+    id_salary INT PRIMARY KEY,
+    id_employee INT,
+    salary DECIMAL(10, 2),
+    time_start DATE not null,
+    time_end DATE not null,
+    FOREIGN KEY (id_employee) REFERENCES Сотрудники(id_employee)
 );
