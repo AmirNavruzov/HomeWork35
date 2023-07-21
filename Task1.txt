@@ -1,0 +1,53 @@
+create database 'library';
+use 'library';
+
+# таблица "писатели" (1)
+create table 'writers'(
+id_writer int not null auto_increment primary key,
+name_writer varchar(45) not null default 'имя_писателя',
+surname_writer varchar(45) not null default 'фамилия_писателя'
+);
+
+# таблица "произведения" (2)
+create table library.books(
+id_book int not null auto_increment primary key,
+name_book varchar(45) not null default 'название_книги',
+id_type int not null,
+foreign key (id_type) references types(id_type)
+);
+
+# таблица "типы_произведения" (3)
+create table 'types'(
+id_type int not null auto_increment primary key,
+name_type varchar(45) not null default 'тип_книги'
+);
+
+# таблица "жанр / тематика" (4)
+create table 'genres'(
+id_genre int not null auto_increment primary key,
+name_genre varchar(45) not null default 'жанр_книги'
+);
+
+# таблица "категории" (5)
+create table library.categories(
+id_category int not null auto_increment primary key,
+name_category varchar(45) not null default 'name_category',
+id_parent_category int not null,
+foreign key (id_parent_category) references categories (id_parent_category)
+);
+
+# таблица "связи" (6)
+create table library.relations(
+id_relations int not null auto_increment primary key,
+id_book int not null,
+id_writer int not null,
+id_categoryint not null,
+id_genre int not null,
+id_type int not null,
+foreign key (id_writer) references writers (id_writer),
+foreign key (id_book) references books (id_book),
+foreign key (id_category) references categories(id_category),
+foreign key (id_genre) references genres(id_genre),
+foreign key (id_type) references types(id_type),
+);  
+

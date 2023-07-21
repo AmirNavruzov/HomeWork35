@@ -1,0 +1,37 @@
+create database 'departments';
+use 'departments';
+
+create table library.departments(
+id_department int not null auto_increment primary key,
+name_department varchar(45) not null default 'name_department'
+);
+
+create table library.employees(
+id_employee int not null auto_increment primary key,
+name_employee varchar(45) not null default 'name_employee',
+surname_employee varchar(45) not null default 'surname_employee',
+id_position int not null,
+
+);
+
+create table 'departments-employees'(
+id_departments-employees int not null auto_increment primary key,
+id_department int not null,
+id_employee int not null,
+time_start int not null,
+time_end int not null,
+id_position int not null,
+id_salary int not null,
+foreign key (id_employee) references employees(id_employee),
+foreign key (id_department) references departments(id_department)
+);
+
+create table 'bosses-employees'(
+id_bosses-employees int not null auto_increment primary key,
+id_employee int not null,
+id_boss int not null,
+time_start int not null,
+time_end int not null,
+foreign key (id_employee) references employees(id_employee),
+foreign key (id_boss) references employees(id_boss)
+);
